@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <title>Document</title>
+  <style>
+    .image-comparison {
+  max-width: 1100px;
+  max-height: 98%;
+  margin: 20px auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.image-comparison img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left;
+}
+
+.image-comparison .images-container {
+  position: relative;
+  display: flex;
+}
+
+.image-comparison .images-container .before-image {
+  position: absolute;
+  top: 00px;
+  width: 50%;
+}
+
+.image-comparison .slider {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.image-comparison .slider-line {
+  position: absolute;
+  height: 100%;
+  width: 4px;
+  background: #fff;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.image-comparison .slider-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  color: #fff;
+  transform: translate(-50%, -50%) rotateZ(90deg);
+}
+  </style>
+</head>
+<body>
+
+  <div class="image-comparison">
+    <div class="images-container">
+      <img class="before-image" src="images/slider_2_before_copy.jpg" alt="" />
+      <img class="after-image" src="images/slider_2_after_copy.JPG" alt="" />
+
+      <div class="slider-line"></div>
+      <div class="slider-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+          />
+        </svg>
+      </div>
+
+      <input type="range" class="slider" min="0" max="100" />
+    </div>
+  </div>
+
+  <script>
+    const sliders = document.querySelectorAll(".image-comparison .slider");
+const beforeImages = document.querySelectorAll(".image-comparison .before-image");
+const sliderLines = document.querySelectorAll(".image-comparison .slider-line");
+const sliderIcons = document.querySelectorAll(".image-comparison .slider-icon");
+
+sliders.forEach((slider, index) => {
+  slider.addEventListener("input", (e) => {
+    let sliderValue = e.target.value + "%";
+
+    beforeImages[index].style.width = sliderValue;
+    sliderLines[index].style.left = sliderValue;
+    sliderIcons[index].style.left = sliderValue;
+  });
+});
+  </script>
+
+  
+</body>
+</html>
